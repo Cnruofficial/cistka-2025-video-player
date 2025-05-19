@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сериал</title>
+  <script src="https://cdn.jsdelivr.net/npm/playerjs@latest/playerjs.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+    }
+    #player {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+<div id="player"></div>
+
+<script>
+  var player = new Playerjs({
+    id: "player",
+    file: [
+      {"title":"1 Серия","file":"https://pixeldrain.com/api/file/jm8hQx1k?dowloand"},
+      {"title":"2 Серия","file":"https://pixeldrain.com/api/file/DPtuSr8A?dowloand"},
+      {"title":"3 Серия","file":"https://pixeldrain.com/api/file/12kBuTh2?dowloand"},
+      {"title":"4 Серия","file":"https://pixeldrain.com/api/file/UtJJutyK?dowloand"}
+    ],
+    color: "#980000",
+    title: "Чистка 2025",
+    autoplay: false,
+    list: true
+  });
+</script>
+
+</body>
+</html>
