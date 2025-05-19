@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Чистка 2025 | Озвучка RUDUB</title>
+  <script src="https://cdn.jsdelivr.net/npm/playerjs@latest/player.js"></script>
   <style>
     body {
       margin: 0;
@@ -18,9 +19,9 @@
     #playlist {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 10px;
-      flex-wrap: wrap;
     }
     .episode-btn {
       background: #222;
@@ -33,15 +34,9 @@
     .episode-btn:hover {
       background: #444;
     }
-    iframe {
-      border: none;
-      width: 800px;
-      max-width: 100%;
-      height: 600px;
-      max-height: 100%;
-      border-radius: 8px;
-      display: block;
-      margin: 0 auto;
+    #player {
+      width: 100%;
+      height: 80vh;
     }
   </style>
 </head>
@@ -50,29 +45,37 @@
   <header>Чистка 2025 | Озвучка RUDUB</header>
 
   <div id="playlist"></div>
-
-  <iframe id="videoFrame" src="https://pixeldrain.com/u/jm8hQx1k?embed" allowfullscreen></iframe>
+  <div id="player"></div>
 
   <script>
     const episodes = [
-      { title: "1 Серия", id: "jm8hQx1k" },
-      { title: "2 Серия", id: "DPtuSr8A" },
-      { title: "3 Серия", id: "12kBuTh2" },
-      { title: "4 Серия", id: "UtJJutyK" }
+      { title: "1 Серия", file: "https://pixeldrain.com/api/file/jm8hQx1k?download" },
+      { title: "2 Серия", file: "https://pixeldrain.com/api/file/DPtuSr8A?download" },
+      { title: "3 Серия", file: "https://pixeldrain.com/api/file/12kBuTh2?download" },
+      { title: "4 Серия", file: "https://pixeldrain.com/api/file/UtJJutyK?download" }
     ];
 
+    const playerDiv = document.getElementById("player");
     const playlistDiv = document.getElementById("playlist");
-    const videoFrame = document.getElementById("videoFrame");
 
-    episodes.forEach(ep => {
+    function loadEpisode(url) {
+      playerDiv.innerHTML = "";
+      new Playerjs({
+        id: "player",
+        file: url
+      });
+    }
+
+    episodes.forEach((ep) => {
       const btn = document.createElement("button");
       btn.className = "episode-btn";
       btn.innerText = ep.title;
-      btn.onclick = () => {
-        videoFrame.src = `https://pixeldrain.com/u/${ep.id}?embed`;
-      };
+      btn.onclick = () => loadEpisode(ep.file);
       playlistDiv.appendChild(btn);
     });
+
+    // Загружаем первую серию по умолчанию
+    loadEpisode(episodes[0].file);
   </script>
 
 </body>
