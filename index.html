@@ -2,38 +2,78 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Сериал</title>
-  <script src="https://cdn.jsdelivr.net/npm/playerjs@latest/playerjs.js"></script>
+  <title>Чистка 2025 | Озвучка RUDUB</title>
   <style>
     body {
       margin: 0;
-      background-color: #000;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
     }
-    #player {
-      width: 100%;
-      height: 100vh;
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+    }
+    #playlist {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .episode-btn {
+      background: #222;
+      border: 1px solid #555;
+      color: #fff;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .episode-btn:hover {
+      background: #444;
+    }
+    iframe {
+      border: none;
+      width: 800px;
+      max-width: 100%;
+      height: 600px;
+      max-height: 100%;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
 
-<div id="player"></div>
+  <header>Чистка 2025 | Озвучка RUDUB</header>
 
-<script>
-  var player = new Playerjs({
-    id: "player",
-    file: [
-      {"title":"1 Серия","file":"https://pixeldrain.com/api/file/jm8hQx1k?dowloand"},
-      {"title":"2 Серия","file":"https://pixeldrain.com/api/file/DPtuSr8A?dowloand"},
-      {"title":"3 Серия","file":"https://pixeldrain.com/api/file/12kBuTh2?dowloand"},
-      {"title":"4 Серия","file":"https://pixeldrain.com/api/file/UtJJutyK?dowloand"}
-    ],
-    color: "#980000",
-    title: "Чистка 2025",
-    autoplay: false,
-    list: true
-  });
-</script>
+  <div id="playlist"></div>
+
+  <iframe id="videoFrame" src="https://pixeldrain.com/u/jm8hQx1k?embed" allowfullscreen></iframe>
+
+  <script>
+    const episodes = [
+      { title: "1 Серия", id: "jm8hQx1k" },
+      { title: "2 Серия", id: "DPtuSr8A" },
+      { title: "3 Серия", id: "12kBuTh2" },
+      { title: "4 Серия", id: "UtJJutyK" }
+    ];
+
+    const playlistDiv = document.getElementById("playlist");
+    const videoFrame = document.getElementById("videoFrame");
+
+    episodes.forEach(ep => {
+      const btn = document.createElement("button");
+      btn.className = "episode-btn";
+      btn.innerText = ep.title;
+      btn.onclick = () => {
+        videoFrame.src = `https://pixeldrain.com/u/${ep.id}?embed`;
+      };
+      playlistDiv.appendChild(btn);
+    });
+  </script>
 
 </body>
 </html>
