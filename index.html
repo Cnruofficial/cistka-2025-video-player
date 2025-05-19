@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Чистка 2025 | Озвучка RUDUB</title>
   <style>
     html, body {
@@ -9,15 +10,17 @@
       padding: 0;
       background: #000;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
     }
 
     .player-container {
-      width: 95vw;
-      max-width: 900px;
-      aspect-ratio: 16 / 9;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
     }
 
     #player {
